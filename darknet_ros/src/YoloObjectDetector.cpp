@@ -557,6 +557,7 @@ void* YoloObjectDetector::publishInThread() {
     darknet_ros_msgs::ObjectCount msg;
     msg.header.stamp = ros::Time::now();
     msg.header.frame_id = "detection";
+    msg.image_header = headerBuff_[(buffIndex_ + 1) % 3];
     msg.count = num;
     objectPublisher_.publish(msg);
 
@@ -589,6 +590,7 @@ void* YoloObjectDetector::publishInThread() {
     darknet_ros_msgs::ObjectCount msg;
     msg.header.stamp = ros::Time::now();
     msg.header.frame_id = "detection";
+    msg.image_header = headerBuff_[(buffIndex_ + 1) % 3];
     msg.count = 0;
     objectPublisher_.publish(msg);
   }
